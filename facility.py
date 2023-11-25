@@ -1,15 +1,12 @@
 import csv
 import psycopg2
 
+from connect import connect
+
+
 def facilityMain():
  try:
-   conn = psycopg2.connect(
-   host="localhost",
-   port="5432",
-   user="postgres",
-   password="0442",
-   database="postgres"
-  )
+   conn = connect()
    with conn:
        cursor = conn.cursor()
        cursor.execute("DROP TABLE IF EXISTS WellfareFacility;")

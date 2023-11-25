@@ -5,3 +5,6 @@ class SQLSelect:
     def selectUser(self, username, password):
         query = f"SELECT * FROM Users WHERE name = '{username}' AND password = '{password}'"
         return query
+
+
+
