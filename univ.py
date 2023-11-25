@@ -1,11 +1,12 @@
 import csv
 import psycopg2
-from main import main
+
+from connect import connect
 
 
 def univMain():
  try:
-  conn = main()
+  conn = connect()
   cursor = conn.cursor()
   cursor.execute("DROP TABLE IF EXISTS ScholarshipForUniv;")
   cursor.execute(
