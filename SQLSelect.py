@@ -1,3 +1,4 @@
+from facility import facility
 class SQLSelect:
     def __init__(self):
         self.res = None
@@ -34,16 +35,20 @@ class SQLSelect:
     #     return query
 
     def insertRegionToUsers(self, name, region):
+        regionQuery = facility(region)
+        for i in regionQuery:
+            print(i)
         # query = f"""INSERT INTO FacilityForUsers(userId, facilityId)
         #             VALUES (
         #                 (SELECT userId FROM Users WHERE name = '{name}'),
-        #                 (SELECT facilityId FROM WellfareFacility WHERE address like %s)
+        #                 {facility(region)}
         #             );
         #             """
+        # return query
         
-        query = "SELECT facilityId FROM WellfareFacility WHERE address LIKE %s;"
+        # query = "SELECT facilityId FROM WellfareFacility WHERE address LIKE %s;"
         
-        return query
+        # return query
     
     def selectRegionToUsers(self, id):
         query = f"""SELECT *

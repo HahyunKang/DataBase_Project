@@ -20,12 +20,16 @@ def facilityMain(userName, userRegion, userId):
         # print("TEST"+n, r, i)
 
         # facilityForUsers 테이블에 정보 넣기
-        insertFacility = SQLSelect().insertRegionToUsers(userName, userRegion)
-        cursor.execute(insertFacility, ('%' + userRegion + '%',))
-        query = cursor.fetchall()
-        for i in query:
-            print(i)
-        
+        # insertFacility = SQLSelect().insertRegionToUsers(userName, userRegion)
+        # cursor.execute(insertFacility, ('%' + userRegion + '%',))
+        # query = cursor.fetchall()
+        # for i in query:
+        #     print(i)
+        SQLSelect().insertRegionToUsers(userName, userRegion)
+        # cursor.execute(insertFacility)
+        # query = cursor.fetchall()
+        # for i in query:
+        #   print(i)
         # # facilityForUser 테이블의 정보를 바탕으로 facility 정보들 모두 출력
         # selectFacility = SQLSelect().selectRegionToUsers(userId)
         # query = cursor.fetchall(selectFacility)

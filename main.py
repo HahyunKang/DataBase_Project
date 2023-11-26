@@ -11,6 +11,7 @@ def main():
     #---------------------------------------------------------------------------------------------------------
     userName, userRegion, userId = login()
     print("사용자 이름: " + userName + ", 사용자 지역: " + userRegion + ", 사용자 아이디: " + str(userId) + "\n")
+    facility.facility(userRegion)
 
     func= int(input("원하는 기능을 입력해주세요\n 1. 장학금 정보 2. 주변 청소년 복지 센터 알아보기 3. 게시판\n"))
 

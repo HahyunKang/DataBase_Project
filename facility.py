@@ -4,7 +4,7 @@ import psycopg2
 from connect import connect
 
 
-def facility():
+def facility(region):
     try:
         conn = connect()
         with conn:
@@ -22,18 +22,15 @@ def facility():
                 "INSERT INTO WellfareFacility (facilityId,facilityName,zipCode,address,phoneNum,homepageUrl) VALUES (%s,%s,%s,%s,%s,%s)",
                 row
             )
-            cursor.execute("SELECT * FROM WellfareFacility")
-            res = cursor.fetchall()
-            for data in res:
-                print(data)
+            # cursor.execute("SELECT * FROM WellfareFacility")
+            # res = cursor.fetchall()
+            # for data in res:
+            #     print(data)
 
-            # search_term = '화성'
-
-            # query = "SELECT facilityName FROM WellfareFacility WHERE address LIKE %s;"
-            # cursor.execute(query, ('%' + search_term + '%',))
-            # query = cursor.fetchall()
-            # for i in query:
-            #     print(i)
+            query = "SELECT * FROM WellfareFacility WHERE address LIKE %s;"
+            cursor.execute(query, ('%' + region + '%',))
+            query = cursor.fetchall()
+            return query
 
 
     except psycopg2.Error as e:
