@@ -1,11 +1,10 @@
 import psycopg2
 from SQLSelect import SQLSelect
-import Login
 
 from connect import connect
 
 
-def facilityMain():
+def facilityMain(userName, userRegion):
  try:
    conn = connect()
    with conn:
@@ -13,8 +12,7 @@ def facilityMain():
         cursor = conn.cursor()
         cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
         cursor.execute("CREATE TABLE FacilityForUsers (userId int, facilityId int);")
-        print("로그인한 이름: " + Login.userName + "로그인한 아이디: " + Login.userRegion)
-        selectFacility = SQLSelect().insertRegionToUsers(Login.userName, Login.userRegion)
+        selectFacility = SQLSelect().insertRegionToUsers(userName, userRegion)
         cursor.execute(selectFacility)
 
         cursor.execute("SELECT * FROM FacilityForUsers;")
