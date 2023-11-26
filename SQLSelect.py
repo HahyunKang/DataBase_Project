@@ -6,5 +6,9 @@ class SQLSelect:
         query = f"SELECT * FROM Users WHERE name = '{username}' AND password = '{password}'"
         return query
 
+    def selectUniv(self, univName):
+        query = f"SELECT * FROM Users WHERE univName = '{univName}'"
+        return query
+
 
 
