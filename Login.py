@@ -3,6 +3,7 @@ from connect import connect
 
 userName = ""
 userRegion = ""
+userId = 0
 
 def login():
     print("로그인하기\n")
@@ -16,8 +17,9 @@ def login():
     select = SQLSelect().selectUser(username, password)
     cursor.execute(select)
     query = cursor.fetchall()
-    for i in query:
-        print(i)
+    for rowId in query:
+        id = rowId[0]
+        print(rowId)
     selectName = SQLSelect().selectUserName(username) # 사용자 이름 뽑아오기
     cursor.execute(selectName)
     query2 = cursor.fetchall()
@@ -32,7 +34,7 @@ def login():
     for rowRegion in query2:
         region = rowRegion[0]
     
-    return (name, region)
+    return (name, region, id)
         
 # if __name__ == "__main__":
 #     userName, userRegion = login()

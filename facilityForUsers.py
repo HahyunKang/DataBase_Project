@@ -4,7 +4,7 @@ from SQLSelect import SQLSelect
 from connect import connect
 
 
-def facilityMain(userName, userRegion):
+def facilityMain(userName, userRegion, userId):
  try:
    conn = connect()
    with conn:
@@ -12,10 +12,20 @@ def facilityMain(userName, userRegion):
         cursor = conn.cursor()
         cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
         cursor.execute("CREATE TABLE FacilityForUsers (userId int, facilityId int);")
-        selectFacility = SQLSelect().insertRegionToUsers(userName, userRegion)
-        cursor.execute(selectFacility)
 
-        cursor.execute("SELECT * FROM FacilityForUsers;")
+        # n = userName
+        # r = userRegion
+
+        # print("TEST"+n, r)
+
+        #
+        insertFacility = SQLSelect().insertRegionToUsers(userRegion, userName)
+        cursor.execute(insertFacility)
+        query = cursor.fetchall()
+        for i in query:
+            print(i)
+        
+        selectFacility = SQLSelect().selectRegionToUsers(userId)
         query = cursor.fetchall()
         for i in query:
           print(i)
