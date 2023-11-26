@@ -13,7 +13,7 @@ def facilityMain():
         cursor = conn.cursor()
         cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
         cursor.execute("CREATE TABLE FacilityForUsers (userId int, facilityId int);")
-        print(Login.userName, Login.userRegion)
+        print("로그인한 이름: " + Login.userName + "로그인한 아이디: " + Login.userRegion)
         selectFacility = SQLSelect().insertRegionToUsers(Login.userName, Login.userRegion)
         cursor.execute(selectFacility)
 

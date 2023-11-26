@@ -18,24 +18,24 @@ def main():
         with conn:
             cur = conn.cursor()
 
-            # cur.execute("DROP TABLE IF EXISTS ScholarshipForHighSchoolr;") # 만약 passenger table이 있다면 삭제
-            # cur.execute("""
-            # CREATE TABLE ScholarshipForHighSchool(scholarshipId Int, institutionName varchar, productName varchar, 
-            # institutionType varchar, productType varchar, scholarType varchar, grade varchar, supportAmount varchar, primary key(scholarshipId))
-            # """)
+            cur.execute("DROP TABLE IF EXISTS ScholarshipForHighSchool;") # 만약 이미 table이 있다면 삭제
+            cur.execute("""
+            CREATE TABLE ScholarshipForHighSchool(scholarshipId Int, institutionName varchar, productName varchar, 
+            institutionType varchar, productType varchar, scholarType varchar, grade varchar, supportAmount varchar, primary key(scholarshipId))
+            """)
 
-        # with open(r"C:\Users\emma3\OneDrive - Ajou University\바탕 화면\c언어\2023.2\ScholarshipForHighSchool.csv", 'r') as f:
-        #     reader = csv.reader(f)
-        #     next(reader) # Skip the header row.
-        #     for row in reader:
-        #         cur.execute(
-        #         """
-        #         INSERT INTO ScholarshipForHighSchool(scholarshipId, institutionName, productName, institutionType, 
-        #         productType, scholarType, grade, supportAmount) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",
-        #         row
-        #         )
+        with open(r"C:\Users\emma3\OneDrive - Ajou University\바탕 화면\c언어\2023.2\ScholarshipForHighSchool.csv", 'r') as f:
+            reader = csv.reader(f)
+            next(reader) # Skip the header row.
+            for row in reader:
+                cur.execute(
+                """
+                INSERT INTO ScholarshipForHighSchool(scholarshipId, institutionName, productName, institutionType, 
+                productType, scholarType, grade, supportAmount) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",
+                row
+                )
 
-        # conn.commit()
+        conn.commit()
 
         with conn:
             cur = conn.cursor()
