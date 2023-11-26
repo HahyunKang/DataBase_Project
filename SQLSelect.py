@@ -14,6 +14,14 @@ class SQLSelect:
     def selectUserRegion(self, username):
         query = f"SELECT region FROM Users WHERE name = '{username}'"
         return query
+
+    def correctId(self, username):
+        query = f"SELECT userId FROM Users WHERE name = '{username}'"
+        return query
+
+    def correctPasssword(self, password):
+        query = f"SELECT userId FROM Users WHERE password = '{password}'"
+        return query
     #------------------------------------------------------------------------------------------------
     
     # 사회 복지 시설을 위한 함수 ----------------------------------------------------------------------

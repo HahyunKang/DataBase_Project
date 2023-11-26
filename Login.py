@@ -6,14 +6,39 @@ userRegion = ""
 userId = 0
 
 def login():
+    con = connect()
+    cursor = con.cursor()
     print("로그인하기\n")
     username = input("이름을 입력하세요 : ")
     password = input("비밀번호를 입력하세요 : ")
-    con = connect()
-    cursor = con.cursor()
+
+    n = SQLSelect().correctId(username)
+    cursor.execute(n)
+    query = cursor.fetchall()
+    for i in query:
+        correctName = i[0]
+
+    pwd = SQLSelect().correctPasssword(password)
+    cursor.execute(pwd)
+    query = cursor.fetchall()
+    for i in query:
+        correctPassword = i[0]
+    # print(correctName, correctPassword)
+    
+    ################ 로그인 ############################
+    # 로그인 예외 처리
+    if (int(correctName) != int(correctPassword)):
+        # 이름과 비밀번호 불일치 시
+        while (int(correctName) != int(correctPassword)):
+            print("비밀번호가 틀렸습니다. 다시 입력하세요.\n")
+            password = input("비밀번호를 입력하세요 : ")
+            pwd = SQLSelect().correctPasssword(password)
+            cursor.execute(pwd)
+            query = cursor.fetchall()
+            for i in query:
+                correctPassword = i[0]
 
     # 로그인 -> 사용자 정보 얻어오기
-    ################ TODO 로그인 예외 처리 ############################
     select = SQLSelect().selectUser(username, password)
     cursor.execute(select)
     query = cursor.fetchall()
