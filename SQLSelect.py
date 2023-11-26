@@ -33,13 +33,15 @@ class SQLSelect:
     #             """
     #     return query
 
-    def insertRegionToUsers(self, region, name):
-        query = f"""INSERT INTO FacilityForUsers(userId, facilityId)
-                    VALUES (
-                        (SELECT userId FROM Users WHERE name = '{name}'),
-                        (SELECT facilityId FROM WellfareFacility WHERE address like '%{region}%')
-                    );
-                    """
+    def insertRegionToUsers(self, name, region):
+        # query = f"""INSERT INTO FacilityForUsers(userId, facilityId)
+        #             VALUES (
+        #                 (SELECT userId FROM Users WHERE name = '{name}'),
+        #                 (SELECT facilityId FROM WellfareFacility WHERE address like %s)
+        #             );
+        #             """
+        
+        query = "SELECT facilityId FROM WellfareFacility WHERE address LIKE %s;"
         
         return query
     

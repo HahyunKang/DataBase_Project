@@ -27,7 +27,7 @@ def login():
     
     ################ 로그인 ############################
     # 로그인 예외 처리
-    if (int(correctName) != int(correctPassword)):
+    if (int(correctName) != int(correctPassword) or int(correctPassword) < 0 or int(correctPassword) > 100):
         # 이름과 비밀번호 불일치 시
         while (int(correctName) != int(correctPassword)):
             print("비밀번호가 틀렸습니다. 다시 입력하세요.\n")

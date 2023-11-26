@@ -128,6 +128,17 @@ def user():
             query = cur.fetchall()
             for i in query:
                 print(i)
+            
+            # str = ['은', ]
+            # # cur.execute("SELECT name FROM Users WHERE name LIKE CONCAT('%', '은' ,'%');")
+            # cur.execute("SELECT name FROM Users WHERE name LIKE CONCAT('%', {%s} ,'%');")
+            # search_term = '채'
+
+            # query = "SELECT name FROM Users WHERE name LIKE %s;"
+            # cur.execute(query, ('%' + search_term + '%',))
+            # query = cur.fetchall()
+            # for i in query:
+            #     print(i)
 
 
     except psycopg2.Error as e:
