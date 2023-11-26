@@ -1,6 +1,8 @@
 from SQLSelect import SQLSelect
 from connect import connect
 
+userRegion = ""
+userName = ""
 
 def login():
     print("로그인하기\n")
@@ -22,15 +24,18 @@ def login():
     for i in query2:
         print(i)
     for rowName in query2:
-        print("[ 로그인 ] " + rowName[0] + " 님 환영합니다!\n")
+        name = rowName[0]
+        print("[ 로그인 ] " + name + " 님 환영합니다!\n")
 
     # 지역 떼어오기
     selectRegion = SQLSelect().selectUserRegion(username)
     cursor.execute(selectRegion)
     query2 = cursor.fetchall()
     for rowRegion in query2:
-        print(rowRegion[0])
+        region = rowRegion[0]
+        print("지역: " + region)
     
-    return (rowName[0], rowRegion[0])
+    return (name, region)
+        
 if __name__ == "__main__":
-    login()
+    userName, userRegion = login()

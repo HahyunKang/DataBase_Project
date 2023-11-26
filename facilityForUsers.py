@@ -1,6 +1,6 @@
 import psycopg2
 from SQLSelect import SQLSelect
-from Login import login
+import Login
 
 from connect import connect
 
@@ -11,16 +11,19 @@ def facilityMain():
    with conn:
         # 테이블 생성
         cursor = conn.cursor()
-        # cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
-        # cursor.execute("CREATE TABLE FacilityForUsers (userId int, facilityId int);")
+        cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
+        cursor.execute("CREATE TABLE FacilityForUsers (userId int, facilityId int);")
+        print(Login.userName, Login.userRegion)
+        selectFacility = SQLSelect().insertRegionToUsers(Login.userName, Login.userRegion)
+        cursor.execute(selectFacility)
 
-        #
-        userName, userRegion = login()
-        SQLSelect().selectUserRegion(userName)
-        SQLSelect().selectFacilityForUsers(userRegion)
-        res = cursor.fetchall()
-        for data in res:
-            print(data)
+        cursor.execute("SELECT * FROM FacilityForUsers;")
+        query = cursor.fetchall()
+        for i in query:
+          print(i)
+        # query = cursor.fetchall()
+        # for data in query:
+        #     print(data)
 
  except psycopg2.Error as e:
   print("Connection failure.")
