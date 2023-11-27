@@ -1,7 +1,7 @@
 import psycopg2
-from SQLSelect import SQLSelect
+from SQL.SQLSelect import SQLSelect
 
-from connect import connect
+from common.connect import connect
 
 
 def facilityMain(userName, userRegion, userId):

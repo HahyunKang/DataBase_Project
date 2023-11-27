@@ -1,7 +1,6 @@
 import psycopg2
-import csv
 
-from connect import connect
+from common.connect import connect
 
 
 def user():

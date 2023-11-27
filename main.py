@@ -1,7 +1,10 @@
-from Login import login
-import user
-import facility
-from facilityForUsers import facilityMain
+from domain.Login import login
+from data import facility
+from SQL.SQLSelect import SQLSelect
+from SchoolInfoController import SchoolInfoController
+from data.facilityForUsers import facilityMain
+from view.view import view
+
 
 def main():
     print("*** 소년, 소녀 가장을 위한 정보 제공 / 커뮤니티 서비스 ***\n")
@@ -15,6 +18,13 @@ def main():
     if func == 1:
         # 장학금 정보
         print("장학금 정보입니다.\n")
+        schoolInfoController = SchoolInfoController()
+        schoolName = schoolInfoController.getSchoolName(userId)
+        if schoolName.__contains__("대학교"):
+            query = SQLSelect().selectUnivScholashipInfo(userId)
+            view().printUnivScholarInfo(query)
+
+
     elif func == 2:
         # 복지정보
         print("주변 청소년 복지 센터 정보입니다.\n")

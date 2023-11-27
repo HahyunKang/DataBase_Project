@@ -1,8 +1,6 @@
-import csv
 import psycopg2
 
-from SQLCreate import SQLCreate
-from connect import connect
+from common.connect import connect
 
 
 def univMain():

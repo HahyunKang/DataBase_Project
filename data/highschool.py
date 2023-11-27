@@ -44,9 +44,6 @@ def main():
             for i in queary:
                 print(i)
 
-            
-            #################
-
     except psycopg2.Error as e:
         print("Connection failure.")
         raise e
