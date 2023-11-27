@@ -16,8 +16,8 @@ class SQLSelect:
         query = f"SELECT region FROM Users WHERE name = '{username}'"
         return query
 
-    def correctId(self, username):
-        query = f"SELECT userId FROM Users WHERE name = '{username}'"
+    def correctId(self, username, password):
+        query = f"SELECT userId FROM Users WHERE name = '{username}' AND password = '{password}'"
         return query
 
     def correctPasssword(self, password):
