@@ -19,9 +19,13 @@ def user():
         conn = connect()
         with conn:
                 cur = conn.cursor()
-                cur.execute("""
-                    CREATE TABLE Users(userId Int, name varchar, region varchar, schoolName varchar, age Int, password Int, primary key(userId))
-                    """)
+                # cur.execute("""
+                #     CREATE TABLE Users(userId Int, name varchar, region varchar, schoolName varchar, age Int, password Int, primary key(userId))
+                #     """)
+                cur.execute("""SELECT * FROM Users""")
+                res = cur.fetchall()
+                for data in res:
+                    print(data)
                 # cur.execute("INSERT INTO Users VALUES (1, '김지영', '서울', '서울고등학교', 18, 0000);")
                 # cur.execute("INSERT INTO Users VALUES (2, '이승민', '부산', '부산대학교', 22, 0001);")
                 # cur.execute("INSERT INTO Users VALUES (3, '박지수', '대구', '대구고등학교', 17, 0002);")
