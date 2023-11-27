@@ -1,9 +1,9 @@
 from domain.Login import login
-from data import facility
-from SQL.SQLSelect import SQLSelect
+from DataBase_Project.data import facility
+from DataBase_Project.SQLSelect import SQLSelect
 from SchoolInfoController import SchoolInfoController
-from data.facilityForUsers import facilityMain
-from view.view import View
+from FacilityInfoController import FacilityInfoController
+from DataBase_Project.view import View
 
 
 def main():
@@ -30,8 +30,12 @@ def main():
     elif func == 2:
         # 복지정보
         print("주변 청소년 복지 센터 정보입니다.\n")
-        facility.facility(userRegion)
-        facilityMain(userName, userRegion, userId)
+        facilityInfoController = FacilityInfoController()
+        facilityInfoController.getFacilityName(userId)
+        query = select.selectFacilityInfo(userId)
+        view.printFacilityInfo(query)
+
+
     else:
         print()
 

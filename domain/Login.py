@@ -1,5 +1,5 @@
-from SQL.SQLSelect import SQLSelect
-from common.connect import connect
+from DataBase_Project.SQLSelect import SQLSelect
+from DataBase_Project.connect import connect
 
 userName = ""
 userRegion = ""
@@ -54,7 +54,7 @@ def login():
         print("[ 로그인 ] " + name + " 님 환영합니다!\n")
 
     # 지역 떼어오기
-    selectRegion = SQLSelect().selectUserRegion(username,password)
+    selectRegion = SQLSelect().selectUserRegion(username, password)
     cursor.execute(selectRegion)
     query2 = cursor.fetchall()
     for rowRegion in query2:

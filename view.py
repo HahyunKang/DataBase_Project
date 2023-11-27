@@ -1,4 +1,4 @@
-from common.connect import connect
+from DataBase_Project.connect import connect
 
 
 class View:
@@ -13,3 +13,8 @@ class View:
         for data in query:
             print(data)
 
+    def printFacilityInfo(self, query):
+        self.cursor.execute(query)
+        query = self.cursor.fetchall()
+        for data in query:
+            print(data)

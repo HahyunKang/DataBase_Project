@@ -2,16 +2,16 @@ from DataBase_Project.SQLSelect import SQLSelect
 from DataBase_Project.connect import connect
 
 
-class SchoolInfoController:
+class FacilityInfoController:
     def __init__(self):
         self.res = None
         self.con = connect()
         self.cursor = self.con.cursor()
 
-    def getSchoolName(self, userId):
+    def getFacilityName(self, userId):
         sqlSelect = SQLSelect()
-        schoolName = sqlSelect.selectSchool(userId)
-        self.cursor.execute(schoolName)
+        facilityName = sqlSelect.selectFacility(userId)
+        self.cursor.execute(facilityName)
         data = self.cursor.fetchall()
         extracted_data = data[0][0]
         return extracted_data
