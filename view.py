@@ -1,4 +1,4 @@
-from DataBase_Project.connect import connect
+from connect import connect
 
 
 class View:
@@ -14,6 +14,12 @@ class View:
             print(data)
 
     def printFacilityInfo(self, query):
+        self.cursor.execute(query)
+        query = self.cursor.fetchall()
+        for data in query:
+            print(data)
+
+    def printHighschoolScholarInfo(self, query):
         self.cursor.execute(query)
         query = self.cursor.fetchall()
         for data in query:

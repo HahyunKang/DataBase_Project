@@ -2,7 +2,7 @@ class SQLCreate:
     def __init__(self):
         self.res = None
 
-    def createScholarShipForUser(self):
+    def createUnivScholarShipForUser(self):
         query = "CREATE TABLE ScholarshipForUsers AS SELECT scholarshipId, userId FROM ScholarshipForUniv, Users WHERE univName = schoolName;"
         return query
 
@@ -20,3 +20,7 @@ class SQLCreate:
         # query = "SELECT facilityId FROM WellfareFacility WHERE address LIKE %s;"
 
         # return query
+
+    def createHighSchoolScholarshipForUser(self):
+        query = "CREATE TABLE HighSchoolScholarshipForUsers AS SELECT scholarshipId,userId FROM ScholarshipForHighSchool,Users WHERE (scholarType='지역연고' and institutionName LIKE %s) OR scholarType = '소득구분';"
+        return query
