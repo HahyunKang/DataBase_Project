@@ -1,7 +1,7 @@
 from common.connect import connect
 
 
-class view:
+class View:
     def __init__(self):
         self.res = None
         self.con = connect()

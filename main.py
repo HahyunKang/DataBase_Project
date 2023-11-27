@@ -3,10 +3,13 @@ from data import facility
 from SQL.SQLSelect import SQLSelect
 from SchoolInfoController import SchoolInfoController
 from data.facilityForUsers import facilityMain
-from view.view import view
+from view.view import View
 
 
 def main():
+
+    view = View()
+    select = SQLSelect()
     print("*** 소년, 소녀 가장을 위한 정보 제공 / 커뮤니티 서비스 ***\n")
     #---------------------------------------------------------------------------------------------------------
     userName, userRegion, userId = login()
@@ -21,11 +24,8 @@ def main():
         schoolInfoController = SchoolInfoController()
         schoolName = schoolInfoController.getSchoolName(userId)
         if schoolName.__contains__("대학교"):
-            query = SQLSelect().selectUnivScholashipInfo(userId)
-            view().printUnivScholarInfo(query)
-
-
-
+            query = select.selectUnivScholashipInfo(userId)
+            view.printUnivScholarInfo(query)
 
     elif func == 2:
         # 복지정보
