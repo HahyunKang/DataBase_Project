@@ -22,14 +22,27 @@ def facility(region):
                 "INSERT INTO WellfareFacility (facilityId,facilityName,zipCode,address,phoneNum,homepageUrl) VALUES (%s,%s,%s,%s,%s,%s)",
                 row
             )
+                
+            #---------- 실행 잘 되는 코드-------------------------------------
             # cursor.execute("SELECT * FROM WellfareFacility")
             # res = cursor.fetchall()
             # for data in res:
             #     print(data)
 
-            query = "SELECT * FROM WellfareFacility WHERE address LIKE %s;"
+            # query = "SELECT * FROM WellfareFacility WHERE address LIKE %s;"
+            # cursor.execute(query, ('%' + region + '%',))
+            # query = cursor.fetchall()
+            # return query
+            #----------------------------------------------------------------
+            cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
+
+            query = """CREATE TABLE FacilityForUsers AS
+                    SELECT Users.userId, WellfareFacility.facilityId
+                    FROM Users, WellfareFacility
+                    WHERE WellfareFacility.address LIKE %s;"""
+            
             cursor.execute(query, ('%' + region + '%',))
-            query = cursor.fetchall()
+
             return query
 
 

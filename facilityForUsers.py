@@ -10,8 +10,8 @@ def facilityMain(userName, userRegion, userId):
    with conn:
         # 테이블 생성
         cursor = conn.cursor()
-        cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
-        cursor.execute("CREATE TABLE FacilityForUsers (userId int, facilityId int);")
+        # cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
+        # cursor.execute("CREATE TABLE FacilityForUsers (userId int, facilityId int);")
 
         # n = userName
         # r = userRegion
@@ -25,7 +25,7 @@ def facilityMain(userName, userRegion, userId):
         # query = cursor.fetchall()
         # for i in query:
         #     print(i)
-        SQLSelect().insertRegionToUsers(userName, userRegion)
+        SQLSelect().selectRegionToUsers(userId)
         # cursor.execute(insertFacility)
         # query = cursor.fetchall()
         # for i in query:

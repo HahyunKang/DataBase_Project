@@ -51,14 +51,15 @@ class SQLSelect:
         # return query
     
     def selectRegionToUsers(self, id):
-        query = f"""SELECT *
-                    FROM  WellfareFacility
-                    WHERE facilityId IN (
-                        SELECT facilityId
-                        FROM FacilityForUsers
-                        WHERE userId = '{id}'
-                    )
-                    """
+        # query = f"""SELECT *
+        #             FROM  WellfareFacility
+        #             WHERE facilityId IN (
+        #                 SELECT facilityId
+        #                 FROM FacilityForUsers
+        #                 WHERE userId = '{id}'
+        #             )
+        #             """
+        query = f"SELECT * FROM FacilityForUsers"
         return query
     
     #-------------------------------------------------------------------------------------------------
