@@ -127,6 +127,22 @@ def user():
                 # cur.execute("INSERT INTO Users VALUES (99, '강나영', '화성', '강남대학교', 20, 0098);")
                 # cur.execute("INSERT INTO Users VALUES (100, '변광준', '수원', '아주대학교', 20, 0099);")
 
+            #
+            # cur.execute("SELECT * FROM Users;")
+            # query = cur.fetchall()
+            # for i in query:
+            #     print(i)
+            
+            # str = ['은', ]
+            # # cur.execute("SELECT name FROM Users WHERE name LIKE CONCAT('%', '은' ,'%');")
+            # cur.execute("SELECT name FROM Users WHERE name LIKE CONCAT('%', {%s} ,'%');")
+            # search_term = '채'
+
+            # query = "SELECT name FROM Users WHERE name LIKE %s;"
+            # cur.execute(query, ('%' + search_term + '%',))
+            # query = cur.fetchall()
+            # for i in query:
+            #     print(i)
 
     except psycopg2.Error as e:
         print("Connection failure.")
