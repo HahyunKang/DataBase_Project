@@ -25,6 +25,8 @@ def main():
             view().printUnivScholarInfo(query)
 
 
+
+
     elif func == 2:
         # 복지정보
         print("주변 청소년 복지 센터 정보입니다.\n")
