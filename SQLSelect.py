@@ -108,3 +108,10 @@ class SQLSelect:
     def selectCommunity(self, userId):
         query = f"SELECT communityName FROM Community WHERE userId = {userId}"
         return query
+    def selectCommunityId(self,userId):
+        query = f"SELECT communityId FROM Community WHERE userId = {userId}"
+        return query
+
+    def selectPostings(self, communityId):
+        query = f"SELECT postId,title,content,hits FROM Post WHERE regionId = {communityId}"
+        return query

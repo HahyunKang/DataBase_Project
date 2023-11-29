@@ -66,3 +66,19 @@ class View:
             print("대상 학년: " + scholarshipGrade)
             print("지원 금액: " + scholarshipAmount)
         print("============================================================")
+
+    def printPostingList(self, info):
+        print("* 게시판 목록 *")
+        for data in info:
+            postId = data[0]
+            postTitle = data[1]
+            postContent = data[2]
+            hits = data[3]
+
+
+            print("============================================================")
+            print("게시판 ID: " + str(postId))
+            print("게시판 제목: " + postTitle)
+            print("게시판 내용: " + postContent )
+            print("조회수: " + str(hits))
+        print("============================================================")

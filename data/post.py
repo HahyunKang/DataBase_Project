@@ -1,7 +1,7 @@
 import psycopg2
 import csv
 
-from DataBase_Project.connect import connect
+from connect import connect
 
 
 def post():

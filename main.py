@@ -48,10 +48,13 @@ def main():
             elif func == 3:
                 print("커뮤니티 정보입니다.\n")
                 community = CommunityController().getCommunityName(userId)
-                print(f"----{community}입니다----")
-                num = input("1. 글 조회 2. 글쓰기 3. 핫게시판 보기")
+                print(f"----{community}입니다----\n")
+                num = int(input("1. 글 조회 2. 글쓰기 3. 핫게시판 보기"))
                 if num == 1:
                     print("글 조회")
+                    view.printPostingList(CommunityController().getPostings(userId))
+                    postId = int(input("조회할 글 ID를 입력해주세요!"))
+                    CommunityController().viewPost(postId)
                 elif num == 2:
                     print("글 쓰기")
                 else:

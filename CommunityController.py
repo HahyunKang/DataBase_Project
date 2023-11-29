@@ -1,3 +1,4 @@
+from SQLInsert import SQLInsert
 from SQLSelect import SQLSelect
 from connect import connect
 
@@ -7,6 +8,8 @@ class CommunityController:
         self.res = None
         self.con = connect()
         self.cursor = self.con.cursor()
+        self.select = SQLSelect()
+        self.insert = SQLInsert()
 
     def getCommunityName(self, userId):
         sqlSelect = SQLSelect()
@@ -16,6 +19,14 @@ class CommunityController:
         extracted_data = data[0][0]
         return extracted_data
 
-    def posting(self,userId):
-        print()
+    def getPostings(self,userId):
+        self.cursor.execute(self.select.selectCommunityId(userId))
+        communityId = self.cursor.fetchall()[0][0]
+        self.cursor.execute(self.select.selectPostings(communityId))
+        postings = self.cursor.fetchall()
+        return postings
+
+    def viewPost(self,postId):
+        self.cursor.execute(self.insert.insertPostView(postId), (postId,))
+        self.con.commit()
 
