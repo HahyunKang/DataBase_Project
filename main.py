@@ -1,15 +1,18 @@
+from SQLCreate import SQLCreate
+from SQLSelect import SQLSelect
+from data import facility
+from data.ForUser import CreateTableForUser
 from domain.Login import login
-from DataBase_Project.data import facility
-from DataBase_Project.SQLSelect import SQLSelect
 from SchoolInfoController import SchoolInfoController
 from FacilityInfoController import FacilityInfoController
-from DataBase_Project.view import View
+from view import View
 
 
 def main():
 
     view = View()
     select = SQLSelect()
+    forUser = CreateTableForUser()
     print("*** 소년, 소녀 가장을 위한 정보 제공 / 커뮤니티 서비스 ***\n")
     #---------------------------------------------------------------------------------------------------------
     userName, userRegion, userId = login()
@@ -26,6 +29,11 @@ def main():
         if schoolName.__contains__("대학교"):
             query = select.selectUnivScholashipInfo(userId)
             view.printUnivScholarInfo(query)
+        else:
+            forUser.createHighSchoolTable(userRegion)
+            query = select.selectHighSchoolScholashipInfo(userId)
+            view.printHighschoolScholarInfo(query)
+
 
     elif func == 2:
         # 복지정보
@@ -34,6 +42,7 @@ def main():
         facilityInfoController.getFacilityName(userId)
         query = select.selectFacilityInfo(userId)
         view.printFacilityInfo(query)
+
 
 
     else:

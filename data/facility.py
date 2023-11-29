@@ -17,6 +17,7 @@ def facility(region):
             )
             conn.commit()
         with open('C:/Users/emma3/PycharmProjects/dbPorject/DataBase_Project/WellfareFacility.csv','r') as f:
+        # with open('C:/WellfareFacility.csv','r') as f:
             reader = csv.reader(f)
             next(reader)
             for row in reader:
@@ -34,6 +35,7 @@ def facility(region):
             #     print(data)
 
 
+            cursor.execute("SELECT * FROM WellfareFacility")
             cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
             query = SQLCreate().createRegionToUsers()
             cursor.execute(query, ('%' + region + '%',))
@@ -65,4 +67,4 @@ def facility(region):
         raise e
 
 # if __name__ == "__main__":
-#     facility(region)
+#     facility('성남')
