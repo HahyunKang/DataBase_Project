@@ -6,7 +6,7 @@ from domain.Login import login
 from SchoolInfoController import SchoolInfoController
 from FacilityInfoController import FacilityInfoController
 from view import View
-
+import webbrowser
 
 def main():
 
@@ -43,8 +43,20 @@ def main():
                 facilityInfoController = FacilityInfoController()
                 facilityInfoController.getFacilityName(userId)
                 query = select.selectFacilityInfo(userId)
-                view.printFacilityInfo(query)
+                facilityPage = view.printFacilityInfo(query)
+                pageCnt = len(facilityPage)
+                #------------------------------------------------
+                while (1):
+                    print("둘러보고 싶은 홈페이지가 있으신가요? 번호를 입력하세요. (보고 싶은 홈페이지가 없으면 Q를 눌러주세요)")
 
+                    num = input()
+                    if num.upper() == 'Q':
+                        break
+                    if (int(num) < 1 or int(num) > pageCnt):
+                        print("없는 페이지입니다.")
+                    else:
+                        webbrowser.open(facilityPage[int(num) - 1])
+                        break
             elif func == 3:
                 print("커뮤니티 정보입니다.\n")
             elif func == 4:
