@@ -4,9 +4,6 @@ import csv
 from SQLCreate import SQLCreate
 from connect import connect
 
-
-
-
 def univMain():
     try:
         conn = connect()
