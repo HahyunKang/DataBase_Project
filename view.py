@@ -1,4 +1,4 @@
-from DataBase_Project.connect import connect
+from connect import connect
 
 class View:
     def __init__(self):

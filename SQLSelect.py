@@ -104,3 +104,7 @@ class SQLSelect:
         query = f"SELECT * FROM ScholarshipForHighSchool WHERE scholarshipId IN (SELECT scholarshipId FROM " \
                 f"HighSchoolScholarshipForUsers WHERE userId = {userId}) "
         return query
+    # -------------------------------------------------------------------------------------------------
+    def selectCommunity(self, userId):
+        query = f"SELECT communityName FROM Community WHERE userId = {userId}"
+        return query

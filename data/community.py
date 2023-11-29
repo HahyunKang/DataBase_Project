@@ -1,7 +1,6 @@
 import psycopg2
 import csv
 
-from SQLCreate import SQLCreate
 from connect import connect
 
 def community():
