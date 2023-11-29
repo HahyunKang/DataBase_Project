@@ -131,7 +131,7 @@ def user():
             # query = cur.fetchall()
             # for i in query:
             #     print(i)
-            
+
             # str = ['은', ]
             # # cur.execute("SELECT name FROM Users WHERE name LIKE CONCAT('%', '은' ,'%');")
             # cur.execute("SELECT name FROM Users WHERE name LIKE CONCAT('%', {%s} ,'%');")
@@ -146,6 +146,6 @@ def user():
     except psycopg2.Error as e:
         print("Connection failure.")
         raise e
-    
+
 if __name__ == "__main__":
     user()
