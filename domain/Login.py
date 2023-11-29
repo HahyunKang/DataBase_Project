@@ -1,5 +1,5 @@
-from SQLSelect import SQLSelect
-from connect import connect
+from DataBase_Project.SQLSelect import SQLSelect
+from DataBase_Project.connect import connect
 
 userName = ""
 userRegion = ""
