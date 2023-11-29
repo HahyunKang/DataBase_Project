@@ -1,8 +1,8 @@
 import psycopg2
 import csv
 
-from SQLCreate import SQLCreate
-from connect import connect
+from DataBase_Project.SQLCreate import SQLCreate
+from DataBase_Project.connect import connect
 
 
 def facility(region):
@@ -15,7 +15,9 @@ def facility(region):
                 """CREATE TABLE WellfareFacility (facilityId INT, facilityName VARCHAR(128), zipCode INT, address VARCHAR(
                 256), phoneNum VARCHAR(256), homepageUrl VARCHAR(256)); """
             )
-        with open('C:/WellfareFacility.csv','r') as f:
+            conn.commit()
+        with open('C:/Users/emma3/PycharmProjects/dbPorject/DataBase_Project/WellfareFacility.csv','r') as f:
+        # with open('C:/WellfareFacility.csv','r') as f:
             reader = csv.reader(f)
             next(reader)
             for row in reader:
@@ -26,6 +28,13 @@ def facility(region):
             conn.commit()
 
             #---------- 실행 잘 되는 코드-------------------------------------
+
+            # cursor.execute("SELECT * FROM WellfareFacility")
+            # res = cursor.fetchall()
+            # for data in res:
+            #     print(data)
+
+
             cursor.execute("SELECT * FROM WellfareFacility")
             cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
             query = SQLCreate().createRegionToUsers()
@@ -35,10 +44,6 @@ def facility(region):
             for data in res:
                 print(data)
             conn.commit()
-            cursor.execute("SELECT * FROM WellfareFacility")
-            res = cursor.fetchall()
-            for data in res:
-                print(data)
 
             # query = "SELECT * FROM WellfareFacility WHERE address LIKE %s;"
             # cursor.execute(query, ('%' + region + '%',))
@@ -61,5 +66,5 @@ def facility(region):
         print("Connection failure.")
         raise e
 
-if __name__ == "__main__":
-    facility('성남')
+# if __name__ == "__main__":
+#     facility('성남')
