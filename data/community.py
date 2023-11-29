@@ -3,6 +3,7 @@ import csv
 
 from connect import connect
 
+
 def community():
     try:
         conn = connect()
