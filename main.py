@@ -21,7 +21,6 @@ def main():
         facility.facility(userRegion)
 
         while (1):
-
             func = int(input("원하는 기능을 입력해주세요\n 1. 장학금 정보 2. 주변 청소년 복지 센터 알아보기 3. 게시판 4.로그아웃 5.종료\n"))
 
             if func == 1:
@@ -51,14 +50,13 @@ def main():
                 print(f"----{community}입니다----\n")
                 num = int(input("1. 글 조회 2. 글쓰기 3. 핫게시판 보기"))
                 if num == 1:
-                    print("글 조회")
+                    print("글 조회\n")
                     view.printPostingList(CommunityController().getPostings(userId))
-                    postId = int(input("조회할 글 ID를 입력해주세요!"))
+                    postId = int(input("조회할 글 ID를 입력해주세요!\n"))
                     CommunityController().viewPost(postId)
                 elif num == 2:
-                    print("글 쓰기")
-                else:
-                    print("핫 게시판 보기")
+                    print("글 쓰기\n")
+
             elif func == 4:
                 print("로그아웃 되었습니다.\n")
                 break
