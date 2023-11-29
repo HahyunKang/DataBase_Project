@@ -19,14 +19,18 @@ class CommunityController:
         extracted_data = data[0][0]
         return extracted_data
 
-    def getPostings(self,userId):
+    def getPostings(self, userId):
         self.cursor.execute(self.select.selectCommunityId(userId))
         communityId = self.cursor.fetchall()[0][0]
         self.cursor.execute(self.select.selectPostings(communityId))
         postings = self.cursor.fetchall()
         return postings
 
-    def viewPost(self,postId):
+    def viewPost(self, postId):
         self.cursor.execute(self.insert.insertPostView(postId), (postId,))
         self.con.commit()
 
+    def viewComments(self, postId):
+        self.cursor.execute(self.select.selectComments(postId))
+        comments = self.cursor.fetchall()
+        return comments

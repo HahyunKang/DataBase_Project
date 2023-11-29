@@ -115,3 +115,7 @@ class SQLSelect:
     def selectPostings(self, communityId):
         query = f"SELECT postId,title,content,hits FROM Post WHERE regionId = {communityId}"
         return query
+
+    def selectComments(self, postId):
+        query = f"SELECT content, writerId FROM Comment WHERE postId = {postId}"
+        return query

@@ -95,3 +95,15 @@ class View:
             print("게시판 내용: " + postContent )
             print("조회수: " + str(hits))
         print("============================================================")
+
+    def printComments(self, info):
+        print("* 댓글 목록 *")
+        for data in info:
+            content = data[0]
+            userId = data[1]
+
+            print("============================================================")
+            print("유저 아이디: " + str(userId))
+            print("게시판 제목: " + content)
+
+        print("============================================================")

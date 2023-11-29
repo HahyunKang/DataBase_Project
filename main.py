@@ -66,11 +66,13 @@ def main():
                     view.printPostingList(CommunityController().getPostings(userId))
                     postId = int(input("조회할 글 ID를 입력해주세요!\n"))
                     CommunityController().viewPost(postId)
+                    comments = CommunityController().viewComments(postId)
+                    view.printComments(comments)
                 elif num == 2:
                     print("글 쓰기\n")
 
             elif func == 4:
-                print("로그아웃 되었습니다.\n")
+                print("[로그아웃] 로그아웃 되었습니다.\n")
                 break
             elif func == 5:
                 print("프로그램을 종료합니다.\n")
