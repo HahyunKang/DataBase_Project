@@ -1,4 +1,4 @@
-from DataBase_Project.data.facility import facility
+from data.facility import facility
 
 
 class SQLSelect:
@@ -77,7 +77,7 @@ class SQLSelect:
         query = f"SELECT * FROM WellfareFacility WHERE address like '%{region}%'"
         return query
 
-    #-------
+    # -------
     def selectFacility(self, userId):
         query = f"SELECT region FROM Users WHERE userId= {userId}"
         return query
@@ -88,7 +88,6 @@ class SQLSelect:
         print(query)
         return query
 
-
     # -------------------------------------------------------------------------------------------------
     def selectSchool(self, userId):
         query = f"SELECT schoolName FROM Users WHERE userId= {userId}"
@@ -96,6 +95,12 @@ class SQLSelect:
 
     def selectUnivScholashipInfo(self, userId):
         print(userId)
-        query = f"SELECT * FROM ScholarshipForUniv WHERE scholarshipId IN (SELECT scholarshipId FROM ScholarshipForUsers WHERE userId = {userId})"
+        query = f"SELECT * FROM ScholarshipForUniv WHERE scholarshipId IN (SELECT scholarshipId FROM " \
+                f"ScholarshipForUsers WHERE userId = {userId}) "
         print(query)
+        return query
+
+    def selectHighSchoolScholashipInfo(self, userId):
+        query = f"SELECT * FROM ScholarshipForHighSchool WHERE scholarshipId IN (SELECT scholarshipId FROM " \
+                f"HighSchoolScholarshipForUsers WHERE userId = {userId}) "
         return query

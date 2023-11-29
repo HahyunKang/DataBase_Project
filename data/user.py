@@ -1,6 +1,6 @@
 import psycopg2
 
-from common.connect import connect
+from connect import connect
 
 
 def user():
