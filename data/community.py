@@ -10,7 +10,7 @@ def community():
         cursor = conn.cursor()
         cursor.execute("DROP TABLE IF EXISTS Community;")
         cursor.execute(
-            """CREATE TABLE Community (communityID Int, userId Int, communityName VARCHAR ); """
+            """CREATE TABLE Community (communityId Int, userId Int, communityName VARCHAR ); """
         )
 
         cursor.execute("""
