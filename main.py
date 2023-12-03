@@ -46,9 +46,17 @@ def main():
 
                 else:
                     forUser.createHighSchoolTable(userRegion)
-                    query = select.selectHighSchoolScholashipInfo(userId)
-                    view.printHighschoolScholarInfo(query)
-                    data = ScholarshipController().getHighSchoolScholarship(userId)
+                    print("원하는 장학 종류를 선택하세요\n1. 소득구분 2. 지역연고 3. 전체보기")
+                    num = int(input())
+                    if num == 1:
+                        query = select.selectHighSchoolScholashipInfoSoduek(userId)
+                        view.printHighschoolScholarInfo(query)
+                    elif num == 2:
+                        query = select.selectHighSchoolScholashipInfojiyeok(userId)
+                        view.printHighschoolScholarInfo(query)
+                    elif num == 3:
+                        query = select.selectHighSchoolScholashipInfo(userId)
+                        view.printHighschoolScholarInfo(query)
                     num = int(input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 N을 눌러주세요."))
                     if num == 'N':
                         break
@@ -60,6 +68,7 @@ def main():
                         data = ScholarshipController().getHighSchoolApplication(userId)
                         view.printApplicationHighschool(
                             data)
+
 
 
 
@@ -86,21 +95,31 @@ def main():
             elif func == 3:
                 print("커뮤니티 정보입니다.\n")
                 community = CommunityController().getCommunityName(userId)
-                print(f"----{community}입니다----\n")
-                num = int(input("1. 글 조회 2. 글쓰기 3. 핫게시판 보기"))
+                print(f"* {community}입니다 *\n")
+                num = int(input("1. 글 조회 2. 글쓰기\n"))
                 if num == 1:
                     print("글 조회\n")
                     view.printPostingList(CommunityController().getPostings(userId))
-                    postId = int(input("조회할 글 ID를 입력해주세요!\n"))
+                    postId = int(input("조회할 글 ID를 입력해주세요!: "))
                     CommunityController().viewPost(postId)
                     comments = CommunityController().viewComments(postId)
                     view.printComments(comments)
+
+                    option = int(input("1. 댓글 쓰기 2. 나가기\n"))
+                    if option == 1:
+                        comment = input("내용: ")
+                        CommunityController().commentings(postId, userId, comment)
+                        view.printComments(CommunityController().getCommentings(postId))
+                    elif option == 2:
+                        continue
                 elif num == 2:
                     print("글 쓰기\n")
-                    title = input("제목: \n")
+                    title = input("제목: ")
                     content = input("내용: \n")
                     CommunityController().postings(userId,title,content)
                     view.printPostingList(CommunityController().getPostings(userId))
+
+
 
             elif func == 4:
                 print("[로그아웃] 로그아웃 되었습니다.\n")

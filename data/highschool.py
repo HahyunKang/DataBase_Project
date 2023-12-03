@@ -1,8 +1,7 @@
 import psycopg2
 import csv
 
-from SQLCreate import SQLCreate
-from connect import connect
+from DataBase_Project.connect import connect
 
 
 def main():
@@ -20,7 +19,7 @@ def main():
             institutionType varchar, productType varchar, scholarType varchar, grade varchar, supportAmount varchar, primary key(scholarshipId))
             """)
 
-        with open("C:/ScholarshipForHighSchool.csv", 'r') as f:
+        with open("C:/Users/emma3/OneDrive - Ajou University/바탕 화면/c언어/2023.2/ScholarshipForHighSchool.csv", 'r') as f:
             reader = csv.reader(f)
             next(reader) # Skip the header row.
             for row in reader:
@@ -32,6 +31,11 @@ def main():
                 )
             conn.commit()
 
+            cur.execute("SELECT * FROM ScholarshipForHighSchool;")
+            res = cur.fetchall()
+            for data in res:
+                print(data)
+            conn.commit()
 
     except psycopg2.Error as e:
         print("Connection failure.")

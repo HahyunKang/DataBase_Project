@@ -96,7 +96,7 @@ class SQLSelect:
     def selectUnivScholashipInfo(self, userId):
         print(userId)
         query = f"SELECT * FROM ScholarshipForUniv WHERE scholarshipId IN (SELECT scholarshipId FROM " \
-                f"ScholarshipForUsers WHERE userId = {userId}) "
+                f"ScholarshipForUsers WHERE userId = {userId}) ORDER BY supportAmount DESC"
         print(query)
         return query
 
@@ -105,6 +105,15 @@ class SQLSelect:
                 f"HighSchoolScholarshipForUsers WHERE userId = {userId}) "
         return query
 
+    def selectHighSchoolScholashipInfoSoduek(self, userId):
+        query = f"SELECT * FROM ScholarshipForHighSchool WHERE scholarshipId IN (SELECT scholarshipId FROM " \
+                f"HighSchoolScholarshipForUsers WHERE userId = {userId} AND scholarType = '소득구분') "
+        return query
+
+    def selectHighSchoolScholashipInfojiyeok(self, userId):
+        query = f"SELECT * FROM ScholarshipForHighSchool WHERE scholarshipId IN (SELECT scholarshipId FROM " \
+                f"HighSchoolScholarshipForUsers WHERE userId = {userId} AND scholarType = '지역연고') "
+        return query
     # -------------------------------------------------------------------------------------------------
     def selectCommunity(self, userId):
         query = f"SELECT communityName FROM Community WHERE userId = {userId}"
@@ -130,4 +139,7 @@ class SQLSelect:
     def selectApplicationForHighSchool(self, userId):
         query = f"SELECT * FROM ScholarshipForHighSchool WHERE scholarshipId IN (SELECT scholarshipId FROM " \
                 f"application WHERE userId = {userId}) "
+        return query
+    def selectPostId(self, communityId):
+        query = f"SELECT postId FROM Post WHERE regionId = {communityId}"
         return query

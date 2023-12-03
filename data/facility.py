@@ -16,7 +16,8 @@ def facility(region):
                 256), phoneNum VARCHAR(256), homepageUrl VARCHAR(256)); """
             )
             conn.commit()
-        with open('C:/WellfareFacility.csv','r') as f:
+        with open('C:'
+                  '/WellfareFacility.csv','r') as f:
         # with open('C:/WellfareFacility.csv','r') as f:
             reader = csv.reader(f)
             next(reader)
