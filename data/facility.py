@@ -65,6 +65,6 @@ def facility(region):
     except psycopg2.Error as e:
         print("Connection failure.")
         raise e
-
+#
 # if __name__ == "__main__":
 #     facility('성남')

@@ -18,6 +18,7 @@ def main():
     while (1):
         userName, userRegion, userId = login()
         print("사용자 이름: " + userName + ", 사용자 지역: " + userRegion + ", 사용자 아이디: " + str(userId) + "\n")
+        facility.facility(userRegion)
 
         while (1):
             func = int(input("원하는 기능을 입력해주세요\n 1. 장학금 정보 2. 주변 청소년 복지 센터 알아보기 3. 게시판 4.로그아웃 5.종료\n"))
