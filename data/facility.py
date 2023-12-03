@@ -1,8 +1,8 @@
 import psycopg2
 import csv
 
-from SQLCreate import SQLCreate
-from connect import connect
+from DataBase_Project.SQLCreate import SQLCreate
+from DataBase_Project.connect import connect
 
 
 def facility(region):
@@ -16,7 +16,7 @@ def facility(region):
                 256), phoneNum VARCHAR(256), homepageUrl VARCHAR(256)); """
             )
             conn.commit()
-        with open('C:/WellfareFacility.csv','r') as f:
+        with open('C:/Users/emma3/OneDrive - Ajou University/바탕 화면/c언어/2023.2/WellfareFacility.csv','r') as f:
         # with open('C:/WellfareFacility.csv','r') as f:
             reader = csv.reader(f)
             next(reader)

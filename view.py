@@ -9,6 +9,7 @@ class View:
 
     def printUnivScholarInfo(self, query):
         print("* 대학생을 위한 장학금 혜택 *")
+        print("- 지원 금액 높은 순입니다 -")
         self.cursor.execute(query)
         query = self.cursor.fetchall()
         cnt = 0

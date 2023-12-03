@@ -1,7 +1,7 @@
 import psycopg2
 import csv
 
-from connect import connect
+from DataBase_Project.connect import connect
 
 
 def community():

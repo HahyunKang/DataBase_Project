@@ -9,3 +9,7 @@ class SQLInsert:
     def insertPost(self):
         query = "INSERT INTO Post(writerId, title, content,  regionId, hits ) VALUES (%s,%s,%s, (SELECT Community.communityId FROM Community where %s = Community.userId), 0);"
         return query
+
+    def insertComment(self):
+        query = "INSERT INTO Comment(postID, content, writerId) VALUES (%s,%s,%s);"
+        return query
