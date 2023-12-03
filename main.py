@@ -10,6 +10,7 @@ from FacilityInfoController import FacilityInfoController
 from view import View
 import webbrowser
 
+
 def main():
     view = View()
     select = SQLSelect()
@@ -33,12 +34,12 @@ def main():
                     query = select.selectUnivScholashipInfo(userId)
                     view.printUnivScholarInfo(query)
                     data = ScholarshipController().getUnivScholarship(userId)
-                    num = int(input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 0을 눌러주세요: "))
-                    if num == 0:
+                    num = input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 Q를 눌러주세요: ")
+                    if num.upper() == 'Q':
                         continue
-                    else :
-                        id = data[num-1][0]
-                        ScholarshipController().apply(userId,id)
+                    else:
+                        id = data[int(num) - 1][0]
+                        ScholarshipController().apply(userId, id)
                         print("신청완료 되었습니다.")
                         data = ScholarshipController().getUnivApplication(userId)
                         view.printApplicationUniv(data)
@@ -56,11 +57,11 @@ def main():
                     elif num == 3:
                         query = select.selectHighSchoolScholashipInfo(userId)
                         view.printHighschoolScholarInfo(query)
-                    num = int(input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 0을 눌러주세요: "))
-                    if num == 0:
+                    num = input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 Q를 눌러주세요: ")
+                    if num.upper() == 'Q':
                         continue
                     else:
-                        id = data[num - 1][0]
+                        id = data[int(num) - 1][0]
                         # print(id)
                         ScholarshipController().apply(userId, id)
                         print("신청완료 되었습니다.")
@@ -74,7 +75,7 @@ def main():
                 query = select.selectFacilityInfo(userId)
                 facilityPage = view.printFacilityInfo(query)
                 pageCnt = len(facilityPage)
-                #------------------------------------------------
+                # ------------------------------------------------
                 while (1):
                     print("둘러보고 싶은 홈페이지가 있으신가요? 번호를 입력하세요. (보고 싶은 홈페이지가 없으면 Q를 눌러주세요)")
 
@@ -111,7 +112,7 @@ def main():
                     print("글 쓰기\n")
                     title = input("제목: ")
                     content = input("내용: \n")
-                    CommunityController().postings(userId,title,content)
+                    CommunityController().postings(userId, title, content)
                     view.printPostingList(CommunityController().getPostings(userId))
 
 
