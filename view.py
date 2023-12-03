@@ -29,6 +29,7 @@ class View:
             print("지원 금액: " + formattedAmount)
         print("============================================================")
 
+
     def printFacilityInfo(self, query):
         facilityPage = []
         self.cursor.execute(query)
@@ -106,4 +107,46 @@ class View:
             print("유저 아이디: " + str(userId))
             print("댓글: " + content)
 
+        print("============================================================")
+
+    def printApplicationUniv(self, info):
+            print("* 신청 목록 *")
+            cnt = 0
+            for data in info:
+                cnt += 1
+            cnt = 0
+            for data in info:
+                cnt += 1
+                universityName = data[2]
+                scholarName = data[3]
+                scholarAmount = data[4]
+                formattedAmount = "{:,.0f} 원".format(scholarAmount)  # 금액 보기 쉽게 수정
+                print("============================================================")
+                print("학교", cnt)
+                print("학교 이름: " + universityName)
+                print("장학 이름: " + scholarName)
+                print("지원 금액: " + formattedAmount)
+            print("============================================================")
+
+    def printApplicationHighschool(self, info):
+        print("* 신청목록 *")
+        cnt = 0
+        for data in info:
+            cnt += 1
+        cnt = 0
+        for data in info:
+            cnt += 1
+            scholarOrganization = data[1]
+            scholarshipName = data[2]
+            scholarshipType = data[5]
+            scholarshipGrade = data[6]
+            scholarshipAmount = data[7]
+
+            print("============================================================")
+            print("학교", cnt)
+            print("운영 기관: " + scholarOrganization)
+            print("장학 이름: " + scholarshipName)
+            print("장학 종류: " + scholarshipType)
+            print("대상 학년: " + scholarshipGrade)
+            print("지원 금액: " + scholarshipAmount)
         print("============================================================")

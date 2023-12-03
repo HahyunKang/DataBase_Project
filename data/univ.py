@@ -13,7 +13,7 @@ def univMain():
                  """CREATE TABLE ScholarshipForUniv (scholarshipId INT, cityName VARCHAR(128), univName VARCHAR(
                  128), scholarshipType VARCHAR(128), supportAmount FLOAT); """
              )
-        with open('C:/Users/emma3/PycharmProjects/dbPorject/DataBase_Project/UnivScholarshipData.csv','r') as f:
+        with open('C:/UnivScholarshipData.csv','r') as f:
              reader = csv.reader(f)
              next(reader)
              for row in reader:
@@ -29,7 +29,8 @@ def univMain():
         # cursor.close()
         # conn.close()
         cursor.execute("DROP TABLE IF EXISTS ScholarshipForUsers;")
-        query = SQLCreate().createScholarShipForUser()
+        query = SQLCreate().createUnivScholarShipForUser()
+        print(query)
         cursor.execute(query)
         cursor.execute("SELECT * FROM ScholarshipForUsers;")
         res = cursor.fetchall()

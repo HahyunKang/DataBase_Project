@@ -27,7 +27,7 @@ def login():
     
     ################ 로그인 ############################
     # 로그인 예외 처리 - 제대로 안 돼서 각주처리 해놓음
-    # 동명이인 처리가 안 됨;;
+    # 동명이인 처리가 안 됨;;;;;;;
     if (int(correctName) != int(correctPassword) or int(correctPassword) < 0 or int(correctPassword) > 100):
         # 이름과 비밀번호 불일치 시
         while (int(correctName) != int(correctPassword)):
