@@ -28,36 +28,12 @@ def facility(region):
             )
             conn.commit()
 
-            #---------- 실행 잘 되는 코드-------------------------------------
-
             # cursor.execute("SELECT * FROM WellfareFacility")
-            # res = cursor.fetchall()
-            # for data in res:
-            #     print(data)
-
-
-            cursor.execute("SELECT * FROM WellfareFacility")
-            cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
-            query = SQLCreate().createRegionToUsers()
-            cursor.execute(query, ('%' + region + '%',))
-            cursor.execute("SELECT * FROM FacilityForUsers;")
-            conn.commit()
-
-            # query = "SELECT * FROM WellfareFacility WHERE address LIKE %s;"
-            # cursor.execute(query, ('%' + region + '%',))
-            # query = cursor.fetchall()
-            # return query
-            #----------------------------------------------------------------
             # cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
-            #
-            # query = """CREATE TABLE FacilityForUsers AS
-            #         SELECT Users.userId, WellfareFacility.facilityId
-            #         FROM Users, WellfareFacility
-            #         WHERE WellfareFacility.address LIKE %s;"""
-            #
+            # query = SQLCreate().createRegionToUsers()
             # cursor.execute(query, ('%' + region + '%',))
-            #
-            # return query
+            # cursor.execute("SELECT * FROM FacilityForUsers;")
+            # conn.commit()
 
 
     except psycopg2.Error as e:

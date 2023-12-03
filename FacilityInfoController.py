@@ -17,5 +17,3 @@ class FacilityInfoController:
         return extracted_data
 
 
-
-

@@ -19,7 +19,7 @@ def main():
     while 1:
         userName, userRegion, userId = login()
         print("사용자 이름: " + userName + ", 사용자 지역: " + userRegion + ", 사용자 아이디: " + str(userId) + "\n")
-        facility.facility(userRegion)
+        # facility.facility(userRegion)
 
         while 1:
             func = int(input("원하는 기능을 입력해주세요\n 1. 장학금 정보 2. 주변 청소년 복지 센터 알아보기 3. 게시판 4.로그아웃 5.종료\n"))
@@ -56,26 +56,21 @@ def main():
                     elif num == 3:
                         query = select.selectHighSchoolScholashipInfo(userId)
                         view.printHighschoolScholarInfo(query)
-                    num = int(input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 N을 눌러주세요."))
-                    if num == 'N':
-                        break
+                    num = int(input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 0을 눌러주세요: "))
+                    if num == 0:
+                        continue
                     else:
                         id = data[num - 1][0]
-                        print(id)
+                        # print(id)
                         ScholarshipController().apply(userId, id)
                         print("신청완료 되었습니다.")
                         data = ScholarshipController().getHighSchoolApplication(userId)
-                        view.printApplicationHighschool(
-                            data)
-
-
-
+                        view.printApplicationHighschool(data)
 
             elif func == 2:
                 # 복지 정보
                 print("주변 청소년 복지 센터 정보입니다.\n")
-                facilityInfoController = FacilityInfoController()
-                facilityInfoController.getFacilityName(userId)
+                forUser.createFacilityTable(userRegion)
                 query = select.selectFacilityInfo(userId)
                 facilityPage = view.printFacilityInfo(query)
                 pageCnt = len(facilityPage)
