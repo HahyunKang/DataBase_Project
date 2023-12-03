@@ -33,12 +33,11 @@ def main():
                     query = select.selectUnivScholashipInfo(userId)
                     view.printUnivScholarInfo(query)
                     data = ScholarshipController().getUnivScholarship(userId)
-                    num = int(input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 N을 눌러주세요."))
-                    if num == 'N':
-                        break
+                    num = int(input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 0을 눌러주세요: "))
+                    if num == 0:
+                        continue
                     else :
                         id = data[num-1][0]
-                        print(id)
                         ScholarshipController().apply(userId,id)
                         print("신청완료 되었습니다.")
                         data = ScholarshipController().getUnivApplication(userId)
@@ -102,6 +101,7 @@ def main():
                     view.printPostingList(CommunityController().getPostings(userId))
                     postId = int(input("조회할 글 ID를 입력해주세요!: "))
                     CommunityController().viewPost(postId)
+                    view.printPostingList(CommunityController().getSelectedPost(postId))
                     comments = CommunityController().viewComments(postId)
                     view.printComments(comments)
 

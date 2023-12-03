@@ -48,3 +48,8 @@ class CommunityController:
         self.cursor.execute(self.select.selectComments(postId))
         comments = self.cursor.fetchall()
         return comments
+
+    def getSelectedPost(self, postId):
+        self.cursor.execute(self.select.selectPost(postId))
+        data = self.cursor.fetchall()
+        return data

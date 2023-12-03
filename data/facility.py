@@ -1,8 +1,8 @@
 import psycopg2
 import csv
 
-from SQLCreate import SQLCreate
-from connect import connect
+from DataBase_Project.SQLCreate import SQLCreate
+from DataBase_Project.connect import connect
 
 
 def facility(region):
@@ -17,7 +17,7 @@ def facility(region):
             )
             conn.commit()
         with open('C:'
-                  '/WellfareFacility.csv','r') as f:
+                  '/Users/emma3/OneDrive - Ajou University/바탕 화면/c언어/2023.2/WellfareFacility.csv','r') as f:
         # with open('C:/WellfareFacility.csv','r') as f:
             reader = csv.reader(f)
             next(reader)
@@ -41,9 +41,6 @@ def facility(region):
             query = SQLCreate().createRegionToUsers()
             cursor.execute(query, ('%' + region + '%',))
             cursor.execute("SELECT * FROM FacilityForUsers;")
-            res = cursor.fetchall()
-            for data in res:
-                print(data)
             conn.commit()
 
             # query = "SELECT * FROM WellfareFacility WHERE address LIKE %s;"
