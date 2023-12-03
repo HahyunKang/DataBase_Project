@@ -14,3 +14,6 @@ class SQLInsert:
     def insertApplication(self):
         query = "INSERT INTO Application(userId, scholarshipId) VALUES (%s,%s); "
         return query
+    def insertComment(self):
+        query = "INSERT INTO Comment(postID, content, writerId) VALUES (%s,%s,%s);"
+        return query

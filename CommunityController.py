@@ -38,3 +38,13 @@ class CommunityController:
     def postings(self,userId,title,content):
         self.cursor.execute(self.insert.insertPost(),(userId,title,content,userId,))
         self.con.commit()
+
+    def commentings(self, postId, userId, content):
+        self.cursor.execute(self.insert.insertComment(), (postId, content, userId, ))
+        self.con.commit()
+
+    def getCommentings(self, postId):
+        self.cursor.execute(self.select.selectPostId(postId))
+        self.cursor.execute(self.select.selectComments(postId))
+        comments = self.cursor.fetchall()
+        return comments

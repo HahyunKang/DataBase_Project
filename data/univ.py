@@ -1,8 +1,9 @@
 import psycopg2
 import csv
 
-from SQLCreate import SQLCreate
-from connect import connect
+from DataBase_Project.SQLCreate import SQLCreate
+from DataBase_Project.connect import connect
+
 
 def univMain():
     try:
@@ -46,5 +47,5 @@ def univMain():
         raise e
 
 
-if __name__ == "__main__":
-    univMain()
+# if __name__ == "__main__":
+#     univMain()
