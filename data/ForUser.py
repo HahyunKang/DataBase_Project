@@ -24,3 +24,12 @@ class CreateTableForUser:
         for data in info:
             print(data)
 
+    def createUnivTable(self):
+        self.cursor.execute("DROP TABLE IF EXISTS ScholarshipForUsers;")
+        query = SQLCreate().createUnivScholarShipForUser()
+        self.cursor.execute(query)
+        self.con.commit()
+
+    def createFacilityTable(self, userRegion):
+        pass
+

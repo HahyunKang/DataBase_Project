@@ -86,21 +86,14 @@ class SQLSelect:
         query = f"SELECT * FROM WellfareFacility WHERE facilityId IN (SELECT facilityId FROM FacilityForUsers WHERE userId = {userId})"
         return query
 
-    def selectFacilityInfos(self):
-        query = f"SELECT * FROM" \
-                f" FacilityForUsers"
-        return query
-
     # -------------------------------------------------------------------------------------------------
     def selectSchool(self, userId):
         query = f"SELECT schoolName FROM Users WHERE userId= {userId}"
         return query
 
     def selectUnivScholashipInfo(self, userId):
-        print(userId)
         query = f"SELECT * FROM ScholarshipForUniv WHERE scholarshipId IN (SELECT scholarshipId FROM " \
                 f"ScholarshipForUsers WHERE userId = {userId}) ORDER BY supportAmount DESC"
-        print(query)
         return query
 
     def selectHighSchoolScholashipInfo(self, userId):
@@ -145,4 +138,8 @@ class SQLSelect:
         return query
     def selectPostId(self, communityId):
         query = f"SELECT postId FROM Post WHERE regionId = {communityId}"
+        return query
+
+    def selectPost(self,postId):
+        query = f"SELECT postId,title,content,hits FROM Post WHERE postId = {postId}"
         return query

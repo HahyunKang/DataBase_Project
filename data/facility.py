@@ -2,6 +2,7 @@ import psycopg2
 import csv
 
 from connect import connect
+from connect import connect
 
 
 def facility():
@@ -40,16 +41,12 @@ def facility():
             # query = cursor.fetchall()
             # return query
             #----------------------------------------------------------------
+            # cursor.execute("SELECT * FROM WellfareFacility")
             # cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
-            #
-            # query = """CREATE TABLE FacilityForUsers AS
-            #         SELECT Users.userId, WellfareFacility.facilityId
-            #         FROM Users, WellfareFacility
-            #         WHERE WellfareFacility.address LIKE %s;"""
-            #
+            # query = SQLCreate().createRegionToUsers()
             # cursor.execute(query, ('%' + region + '%',))
-            #
-            # return query
+            # cursor.execute("SELECT * FROM FacilityForUsers;")
+            # conn.commit()
 
 
     except psycopg2.Error as e:

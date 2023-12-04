@@ -37,7 +37,6 @@ def login():
     query = cursor.fetchall()
     for rowId in query:
         id = rowId[0]
-        print(rowId)
     selectName = SQLSelect().selectUserName(username) # 사용자 이름 뽑아오기
     cursor.execute(selectName)
     query2 = cursor.fetchall()
