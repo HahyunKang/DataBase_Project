@@ -41,13 +41,12 @@ def main():
                     query = select.selectUnivScholashipInfo(userId)
                     view.printUnivScholarInfo(query)
                     data = ScholarshipController().getUnivScholarship(userId)
-                    print(len(data))
-                    num = int(input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 0을 눌러주세요."))
+                    num = input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 Q을 눌러주세요.")
                     while s:
-                        if num == 0:
+                        if num.upper() == 'Q':
                             s = False
                         else:
-                            id = data[num - 1][0]
+                            id = data[int(num) - 1][0]
                             ScholarshipController().apply(userId, id)
                             print("신청완료 되었습니다.")
                             data = ScholarshipController().getUnivApplication(userId)
@@ -69,18 +68,17 @@ def main():
                         query = select.selectHighSchoolScholashipInfo(userId)
                         view.printHighschoolScholarInfo(query)
                         data = ScholarshipController().getHighSchoolScholarship(userId)
-                        num = int(input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 0을 눌러주세요."))
+                        num = int(input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 Q을 눌러주세요."))
                         while s:
-                            if num == 0:
-                                break
+                            if num == 'Q':
+                                s = False
                             else:
                                 id = data[num - 1][0]
                                 ScholarshipController().apply(userId, id)
                                 print("신청완료 되었습니다.")
                                 data = ScholarshipController().getHighSchoolApplication(userId)
                                 view.printApplicationHighschool(data)
-                                break
-
+                                s = False
 
 
             elif func == 2:

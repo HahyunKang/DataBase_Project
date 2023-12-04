@@ -19,10 +19,6 @@ class CreateTableForUser:
         query = SQLCreate().createRegionToUsers()
         self.cursor.execute(query)
         self.con.commit()
-        self.cursor.execute("SELECT * FROM FacilityForUsers;")
-        info = self.cursor.fetchall()
-        for data in info:
-            print(data)
 
     def createUnivTable(self):
         self.cursor.execute("DROP TABLE IF EXISTS ScholarshipForUsers;")
@@ -32,4 +28,3 @@ class CreateTableForUser:
 
     def createFacilityTable(self, userRegion):
         pass
-
