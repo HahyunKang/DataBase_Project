@@ -8,8 +8,19 @@ class CreateTableForUser:
         self.con = connect()
         self.cursor = self.con.cursor()
 
-    def createHighSchoolTable(self, region):
+    def createHighSchoolTable(self):
         self.cursor.execute("DROP TABLE IF EXISTS HighSchoolScholarshipForUsers;")
         query = SQLCreate().createHighSchoolScholarshipForUser()
-        self.cursor.execute(query, ('%' + region + '%',))
+        self.cursor.execute(query)
         self.con.commit()
+
+    def createFacilityForUser(self):
+        self.cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
+        query = SQLCreate().createRegionToUsers()
+        self.cursor.execute(query)
+        self.con.commit()
+        self.cursor.execute("SELECT * FROM FacilityForUsers;")
+        info = self.cursor.fetchall()
+        for data in info:
+            print(data)
+

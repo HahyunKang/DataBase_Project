@@ -83,9 +83,12 @@ class SQLSelect:
         return query
 
     def selectFacilityInfo(self, userId):
-        print(userId)
         query = f"SELECT * FROM WellfareFacility WHERE facilityId IN (SELECT facilityId FROM FacilityForUsers WHERE userId = {userId})"
-        print(query)
+        return query
+
+    def selectFacilityInfos(self):
+        query = f"SELECT * FROM" \
+                f" FacilityForUsers"
         return query
 
     # -------------------------------------------------------------------------------------------------
