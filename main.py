@@ -68,12 +68,12 @@ def main():
                         query = select.selectHighSchoolScholashipInfo(userId)
                         view.printHighschoolScholarInfo(query)
                         data = ScholarshipController().getHighSchoolScholarship(userId)
-                        num = int(input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 Q을 눌러주세요."))
+                        num = input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 Q을 눌러주세요.")
                         while s:
-                            if num == 'Q':
+                            if num.upper() == 'Q':
                                 s = False
                             else:
-                                id = data[num - 1][0]
+                                id = data[int(num) - 1][0]
                                 ScholarshipController().apply(userId, id)
                                 print("신청완료 되었습니다.")
                                 data = ScholarshipController().getHighSchoolApplication(userId)
