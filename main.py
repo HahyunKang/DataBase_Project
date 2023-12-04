@@ -12,6 +12,7 @@ import webbrowser
 
 
 def main():
+    global data
     view = View()
     select = SQLSelect()
     forUser = CreateTableForUser()
@@ -21,6 +22,7 @@ def main():
         userName, userRegion, userId = login()
         print("사용자 이름: " + userName + ", 사용자 지역: " + userRegion + ", 사용자 아이디: " + str(userId) + "\n")
         # facility.facility(userRegion)
+        data = None
 
         while 1:
             func = int(input("원하는 기능을 입력해주세요\n 1. 장학금 정보 2. 주변 청소년 복지 센터 알아보기 3. 게시판 4.로그아웃 5.종료\n"))
@@ -34,6 +36,9 @@ def main():
                     query = select.selectUnivScholashipInfo(userId)
                     view.printUnivScholarInfo(query)
                     data = ScholarshipController().getUnivScholarship(userId)
+                    if not data:
+                        print("신청 가능한 장학금이 없습니다.")
+                        continue
                     num = input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 Q를 눌러주세요: ")
                     if num.upper() == 'Q':
                         continue
@@ -57,16 +62,22 @@ def main():
                     elif num == 3:
                         query = select.selectHighSchoolScholashipInfo(userId)
                         view.printHighschoolScholarInfo(query)
+                    data = ScholarshipController().getHighSchoolScholarship(userId)
+                    if not data:
+                        print("신청 가능한 장학금이 없습니다.")
+                        continue
                     num = input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 Q를 눌러주세요: ")
                     if num.upper() == 'Q':
                         continue
                     else:
-                        id = data[int(num) - 1][0]
-                        # print(id)
-                        ScholarshipController().apply(userId, id)
-                        print("신청완료 되었습니다.")
-                        data = ScholarshipController().getHighSchoolApplication(userId)
-                        view.printApplicationHighschool(data)
+                        if 1 <= int(num) <= len(data):
+                            id = data[int(num) - 1][0]
+                            ScholarshipController().apply(userId, id)
+                            print("신청완료 되었습니다.")
+                            data = ScholarshipController().getHighSchoolApplication(userId)
+                            view.printApplicationHighschool(data)
+                        else:
+                            print("유효하지 않은 번호를 입력했습니다. 다시 시도해주세요.")
 
             elif func == 2:
                 # 복지 정보
