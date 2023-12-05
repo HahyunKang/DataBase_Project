@@ -95,19 +95,6 @@ def main():
                         webbrowser.open(facilityPage[int(num) - 1])
                         break
 
-                        num = input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 Q를 눌러주세요: ")
-                        if num.upper() == 'Q':
-                            continue
-                        else:
-                            if 1 <= int(num) <= len(data):
-                                id = data[int(num) - 1][0]
-                                ScholarshipController().apply(userId, id)
-                                print("신청완료 되었습니다.")
-                                data = ScholarshipController().getHighSchoolApplication(userId)
-                                view.printApplicationHighschool(data)
-                            else:
-                                print("유효하지 않은 번호를 입력했습니다. 다시 시도해주세요.")
-
             elif func == 3:
                 print("커뮤니티 정보입니다.\n")
                 community = CommunityController().getCommunityName(userId)
