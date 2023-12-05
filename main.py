@@ -52,9 +52,6 @@ def main():
                             data = ScholarshipController().getUnivApplication(userId)
                             view.printApplicationUniv(data)
                             s= False
-                        if not data:
-                            print("신청 가능한 장학금이 없습니다.")
-                            continue
                 else:
                     print("원하는 장학 종류를 선택하세요\n1. 소득구분 2. 지역연고 3. 전체보기")
                     num = int(input())
@@ -97,9 +94,7 @@ def main():
                     else:
                         webbrowser.open(facilityPage[int(num) - 1])
                         break
-                        if not data:
-                            print("신청 가능한 장학금이 없습니다.")
-                            continue
+
                         num = input("신청하고 싶은 장학금이 있으면 번호를 입력해주세요. 없다면 Q를 눌러주세요: ")
                         if num.upper() == 'Q':
                             continue
