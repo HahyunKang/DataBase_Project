@@ -16,6 +16,9 @@ class View:
         cnt = 0
         for data in query:
             cnt += 1
+        if cnt == 0:
+            print("신청 가능한 장학금이 없습니다.")
+            return
         print("당신을 위한 혜택이 " + str(cnt) + "건 존재합니다.")
         cnt = 0
         for data in query:
@@ -39,6 +42,9 @@ class View:
         cnt = 0
         for data in query:
             cnt += 1
+        if cnt == 0:
+            print("이용자님 지역에 사회 복지 시설이 없습니다.")
+            return
         print("당신을 위한 혜택이 " + str(cnt) + "건 존재합니다.")
         cnt = 0
         for data in query:
@@ -64,6 +70,9 @@ class View:
         query = self.cursor.fetchall()
         for data in query:
             cnt += 1
+        if cnt == 0:
+            print("신청 가능한 장학금이 없습니다.")
+            return
         print("당신을 위한 혜택이 " + str(cnt) + "건 존재합니다.")
         cnt = 0
         for data in query:
