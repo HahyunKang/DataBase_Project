@@ -1,6 +1,8 @@
 import psycopg2
 import csv
 
+from prettytable import PrettyTable
+
 from connect import connect
 
 
@@ -12,7 +14,6 @@ def post():
         cursor.execute(
               """CREATE TABLE Post (postId SERIAL, writerId INT, title VARCHAR, content VARCHAR, regionId INT, hits INT, primary key(postId)); """
         )
-        conn.commit()
         cursor.execute("INSERT INTO Post(writerId, title, content,  regionId, hits ) VALUES (3, '무제', '심심해요ㅠㅠ', (SELECT Community.communityId FROM Community where 3 = Community.userId), 7);")
         cursor.execute("INSERT INTO Post(writerId, title, content,  regionId, hits ) VALUES (1, 'help', '어떡하죠ㅠ', (SELECT Community.communityId FROM Community where 1 = Community.userId), 9);")
         cursor.execute("INSERT INTO Post(writerId, title, content,  regionId, hits ) VALUES (4, '행복하고 싶다', '우울해', (SELECT Community.communityId FROM Community where 4 = Community.userId), 3);")
@@ -113,14 +114,16 @@ def post():
         cursor.execute("INSERT INTO Post(writerId, title, content,  regionId, hits ) VALUES (78, '사회복지시설 후기', '어떡하죠ㅠ', (SELECT Community.communityId FROM Community where 78 = Community.userId), 6);")
         cursor.execute("INSERT INTO Post(writerId, title, content,  regionId, hits ) VALUES (43, 'help', '어떡하죠ㅠ', (SELECT Community.communityId FROM Community where 43 = Community.userId), 7);")
         cursor.execute("INSERT INTO Post(writerId, title, content,  regionId, hits ) VALUES (22, '사회복지시설 후기', '댓글 달면 공유해드림ㅇㅇ', (SELECT Community.communityId FROM Community where 22 = Community.userId), 0);")
+        conn.commit()
 
 
         cursor.execute("SELECT * FROM Post")
-        conn.commit()
         res = cursor.fetchall()
+        columns = [desc[0] for desc in cursor.description]
+        table = PrettyTable(columns)
         for data in res:
-            print(data)
-        conn.commit()
+            table.add_row(data)
+        print(table)
 
 
     except psycopg2.Error as e:

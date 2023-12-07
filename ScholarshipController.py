@@ -1,5 +1,7 @@
 import select
 
+from prettytable import PrettyTable
+
 from SQLInsert import SQLInsert
 from SQLSelect import SQLSelect
 from connect import connect
@@ -43,3 +45,4 @@ class ScholarshipController:
         self.con.commit()
         data = self.cursor.fetchall()
         return data
+

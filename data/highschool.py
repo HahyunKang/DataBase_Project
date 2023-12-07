@@ -1,6 +1,8 @@
 import psycopg2
 import csv
 
+from prettytable import PrettyTable
+
 from connect import connect
 from data.ForUser import CreateTableForUser
 
@@ -32,8 +34,14 @@ def main():
                 )
             conn.commit()
 
-        forUser = CreateTableForUser()
-        forUser.createHighSchoolTable()
+        cur.execute("SELECT * FROM ScholarshipForHighSchool")
+        conn.commit()
+        res = cur.fetchall()
+        columns = [desc[0] for desc in cur.description]
+        table = PrettyTable(columns)
+        for data in res:
+            table.add_row(data)
+        print(table)
 
 
 

@@ -1,7 +1,9 @@
 import psycopg2
 import csv
 
-from DataBase_Project.connect import connect
+from prettytable import PrettyTable
+
+from connect import connect
 
 
 def region():
@@ -13,16 +15,16 @@ def region():
             """CREATE TABLE Comment (commentId SERIAL, postID INT, content VARCHAR, writerId INT, PRIMARY KEY(commentId)); """
         )
 
-        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (3, '하기 싫다;;', 100);")
-        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (100, '에휴', 3);")
-        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (3, '정보 졈', 2);")
-        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (1, '나도 알려조', 20);")
+        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (3, ' 홈페이지 가면 알 수 있어요!', 100);")
+        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (100, '같이 힘내봐요..ㅠㅠ', 3);")
+        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (3, '정보 어디서 구하셨나요?', 2);")
+        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (1, '대단해요....고생하시네요', 20);")
         cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (20, '그런 정보 어디서 구함?', 2);")
         cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (23, '어렵다', 21);")
-        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (13, '취업 ㄹㅇ 어려움', 22);")
-        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (3, '데배 개꿀잼', 2);")
+        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (13, '취업 어떻게할지...막막하다', 22);")
+        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (3, '데이터베이스 배워봐용', 2);")
         cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (4, '이거 어케 해?;', 2);")
-        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (28, '이겨내ㅋ', 5);")
+        cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (28, '이겨내봅시다', 5);")
         cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (31, '하기 싫다;;', 6);")
         cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (100, '에휴', 67);")
         cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (34, '정보 졈', 85);")
@@ -115,11 +117,12 @@ def region():
         cursor.execute("INSERT INTO Comment(postID, content, writerId) VALUES (15, '이겨내ㅋ', 10);")
 
         cursor.execute("SELECT * FROM Comment")
-        conn.commit()
         res = cursor.fetchall()
+        columns = [desc[0] for desc in cursor.description]
+        table = PrettyTable(columns)
         for data in res:
-            print(data)
-        conn.commit()
+            table.add_row(data)
+        print(table)
 
 
     except psycopg2.Error as e:

@@ -129,7 +129,7 @@ class SQLSelect:
 
     def selectApplicationForUniv(self, userId):
         query = f"SELECT * FROM ScholarshipForUniv WHERE scholarshipId IN (SELECT scholarshipId FROM " \
-                f"application WHERE userId = {userId}) "
+                f"application WHERE userId = {userId})"
         return query
 
     def selectApplicationForHighSchool(self, userId):

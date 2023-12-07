@@ -1,6 +1,6 @@
 import psycopg2
 
-from DataBase_Project.connect import connect
+from connect import connect
 
 
 def application():

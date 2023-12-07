@@ -1,8 +1,8 @@
 import psycopg2
 import csv
 
-from DataBase_Project.SQLCreate import SQLCreate
-from DataBase_Project.connect import connect
+from connect import connect
+from prettytable import PrettyTable
 
 
 def univMain():
@@ -22,24 +22,16 @@ def univMain():
                   "INSERT INTO ScholarshipForUniv (scholarshipId,cityName,univName,scholarshipType,supportAmount) VALUES (%s,%s,%s,%s,%s)",
                   row
                  )
+
         cursor.execute("SELECT * FROM ScholarshipForUniv")
         res = cursor.fetchall()
+        columns = [desc[0] for desc in cursor.description]
+        table = PrettyTable(columns)
         for data in res:
-            print(data)
-        conn.commit()
-        # cursor.close()
-        # conn.close()
-        cursor.execute("DROP TABLE IF EXISTS ScholarshipForUsers;")
-        query = SQLCreate().createUnivScholarShipForUser()
-        print(query)
-        cursor.execute(query)
-        cursor.execute("SELECT * FROM ScholarshipForUsers;")
-        res = cursor.fetchall()
-        for data in res:
-            print(data)
-        conn.commit()
-        # cursor.close()
-        # conn.close()
+            table.add_row(data)
+        print(table)
+        cursor.close()
+        conn.close()
 
 
     except psycopg2.Error as e:
@@ -47,5 +39,5 @@ def univMain():
         raise e
 
 
-# if __name__ == "__main__":
-#     univMain()
+if __name__ == "__main__":
+    univMain()

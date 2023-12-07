@@ -1,7 +1,9 @@
 import psycopg2
 import csv
 
-from DataBase_Project.connect import connect
+from prettytable import PrettyTable
+
+from connect import connect
 
 
 def community():
@@ -21,9 +23,11 @@ def community():
         """)
         cursor.execute("select * from Community;")
         res = cursor.fetchall()
+        columns = [desc[0] for desc in cursor.description]
+        table = PrettyTable(columns)
         for data in res:
-            print(data)
-        conn.commit()
+            table.add_row(data)
+        print(table)
 
 
 

@@ -4,6 +4,7 @@ from SQLSelect import SQLSelect
 from ScholarshipController import ScholarshipController
 from data import facility
 from data.ForUser import CreateTableForUser
+from data.univ import univMain
 from domain.Login import login
 from SchoolInfoController import SchoolInfoController
 from FacilityInfoController import FacilityInfoController
@@ -20,6 +21,7 @@ def main():
     forUser.createHighSchoolTable()
     forUser.createFacilityForUser()
     forUser.createUnivTable()
+
 
     print("*** 소년, 소녀 가장을 위한 정보 제공 / 커뮤니티 서비스 ***\n")
     # ---------------------------------------------------------------------------------------------------------

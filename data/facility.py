@@ -1,6 +1,8 @@
 import psycopg2
 import csv
 
+from prettytable import PrettyTable
+
 from connect import connect
 from connect import connect
 
@@ -25,29 +27,13 @@ def facility():
             )
             conn.commit()
 
-
-            #---------- 실행 잘 되는 코드-------------------------------------
-            # cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
-            # query = SQLCreate().createRegionToUsers()
-            # cursor.execute(query, ('%' + region + '%',))
-            # cursor.execute("SELECT * FROM FacilityForUsers;")
-            # res = cursor.fetchall()
-            # for data in res:
-            #     print(data)
-            # conn.commit()
-
-            # query = "SELECT * FROM WellfareFacility WHERE address LIKE %s;"
-            # cursor.execute(query, ('%' + region + '%',))
-            # query = cursor.fetchall()
-            # return query
-            #----------------------------------------------------------------
-            # cursor.execute("SELECT * FROM WellfareFacility")
-            # cursor.execute("DROP TABLE IF EXISTS FacilityForUsers;")
-            # query = SQLCreate().createRegionToUsers()
-            # cursor.execute(query, ('%' + region + '%',))
-            # cursor.execute("SELECT * FROM FacilityForUsers;")
-            # conn.commit()
-
+            cursor.execute("SELECT * FROM WellfareFacility")
+            res = cursor.fetchall()
+            columns = [desc[0] for desc in cursor.description]
+            table = PrettyTable(columns)
+            for data in res:
+                table.add_row(data)
+            print(table)
 
     except psycopg2.Error as e:
         print("Connection failure.")
